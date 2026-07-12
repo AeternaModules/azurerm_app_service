@@ -208,11 +208,11 @@ EOT
       })
       storage_account_url = string
     }))
-    connection_string = optional(object({
+    connection_string = optional(list(object({
       name  = string
       type  = string
       value = string
-    }))
+    })))
     identity = optional(object({
       identity_ids = optional(set(string))
       type         = string
@@ -254,7 +254,7 @@ EOT
       ftps_state               = optional(string)
       health_check_path        = optional(string)
       http2_enabled            = optional(bool) # Default: false
-      ip_restriction = optional(object({
+      ip_restriction = optional(list(object({
         action = optional(string) # Default: "Allow"
         headers = optional(object({
           x_azure_fdid      = optional(set(string))
@@ -267,7 +267,7 @@ EOT
         priority                  = optional(number) # Default: 65000
         service_tag               = optional(string)
         virtual_network_subnet_id = optional(string)
-      }))
+      })))
       java_container           = optional(string)
       java_container_version   = optional(string)
       java_version             = optional(string)
@@ -280,7 +280,7 @@ EOT
       python_version           = optional(string)
       remote_debugging_enabled = optional(bool) # Default: false
       remote_debugging_version = optional(string)
-      scm_ip_restriction = optional(object({
+      scm_ip_restriction = optional(list(object({
         action = optional(string) # Default: "Allow"
         headers = optional(object({
           x_azure_fdid      = optional(set(string))
@@ -293,7 +293,7 @@ EOT
         priority                  = optional(number) # Default: 65000
         service_tag               = optional(string)
         virtual_network_subnet_id = optional(string)
-      }))
+      })))
       scm_type                    = optional(string)
       scm_use_main_ip_restriction = optional(bool) # Default: false
       use_32_bit_worker_process   = optional(bool)
@@ -308,14 +308,14 @@ EOT
       rollback_enabled   = optional(bool)
       use_mercurial      = optional(bool)
     }))
-    storage_account = optional(object({
+    storage_account = optional(list(object({
       access_key   = string
       account_name = string
       mount_path   = optional(string)
       name         = string
       share_name   = string
       type         = string
-    }))
+    })))
   }))
 }
 
