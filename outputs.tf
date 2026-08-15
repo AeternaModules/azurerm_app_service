@@ -12,12 +12,12 @@ output "app_services_app_settings" {
 }
 output "app_services_auth_settings" {
   description = "Map of auth_settings values across all app_services, keyed the same as var.app_services"
-  value       = { for k, v in azurerm_app_service.app_services : k => v.auth_settings if v.auth_settings != null && length(v.auth_settings) > 0 }
+  value       = { for k, v in azurerm_app_service.app_services : k => one(v.auth_settings) if v.auth_settings != null && length(v.auth_settings) > 0 }
   sensitive   = true
 }
 output "app_services_backup" {
   description = "Map of backup values across all app_services, keyed the same as var.app_services"
-  value       = { for k, v in azurerm_app_service.app_services : k => v.backup if v.backup != null && length(v.backup) > 0 }
+  value       = { for k, v in azurerm_app_service.app_services : k => one(v.backup) if v.backup != null && length(v.backup) > 0 }
   sensitive   = true
 }
 output "app_services_client_affinity_enabled" {
@@ -55,7 +55,7 @@ output "app_services_https_only" {
 }
 output "app_services_identity" {
   description = "Map of identity values across all app_services, keyed the same as var.app_services"
-  value       = { for k, v in azurerm_app_service.app_services : k => v.identity if v.identity != null && length(v.identity) > 0 }
+  value       = { for k, v in azurerm_app_service.app_services : k => one(v.identity) if v.identity != null && length(v.identity) > 0 }
 }
 output "app_services_key_vault_reference_identity_id" {
   description = "Map of key_vault_reference_identity_id values across all app_services, keyed the same as var.app_services"
@@ -67,7 +67,7 @@ output "app_services_location" {
 }
 output "app_services_logs" {
   description = "Map of logs values across all app_services, keyed the same as var.app_services"
-  value       = { for k, v in azurerm_app_service.app_services : k => v.logs if v.logs != null && length(v.logs) > 0 }
+  value       = { for k, v in azurerm_app_service.app_services : k => one(v.logs) if v.logs != null && length(v.logs) > 0 }
   sensitive   = true
 }
 output "app_services_name" {
@@ -96,7 +96,7 @@ output "app_services_resource_group_name" {
 }
 output "app_services_site_config" {
   description = "Map of site_config values across all app_services, keyed the same as var.app_services"
-  value       = { for k, v in azurerm_app_service.app_services : k => v.site_config if v.site_config != null && length(v.site_config) > 0 }
+  value       = { for k, v in azurerm_app_service.app_services : k => one(v.site_config) if v.site_config != null && length(v.site_config) > 0 }
 }
 output "app_services_site_credential" {
   description = "Map of site_credential values across all app_services, keyed the same as var.app_services"
@@ -104,7 +104,7 @@ output "app_services_site_credential" {
 }
 output "app_services_source_control" {
   description = "Map of source_control values across all app_services, keyed the same as var.app_services"
-  value       = { for k, v in azurerm_app_service.app_services : k => v.source_control if v.source_control != null && length(v.source_control) > 0 }
+  value       = { for k, v in azurerm_app_service.app_services : k => one(v.source_control) if v.source_control != null && length(v.source_control) > 0 }
 }
 output "app_services_storage_account" {
   description = "Map of storage_account values across all app_services, keyed the same as var.app_services"
